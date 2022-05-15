@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Ben Ashbaugh
+# Copyright (c) 2021 Ben Ashbaugh
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -20,6 +20,6 @@
 
 add_level_zero_sample(
     TEST
-    NUMBER 00
-    TARGET enumlevelzero
+    NUMBER 01
+    TARGET lzinfo
     SOURCES main.cpp)

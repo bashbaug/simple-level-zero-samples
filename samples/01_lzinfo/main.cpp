@@ -1,5 +1,5 @@
 /*
-// Copyright (c) 2022 Ben Ashbaugh
+// Copyright (c) 2021 Ben Ashbaugh
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -25,21 +25,7 @@
 #include <popl/popl.hpp>
 
 #include "ze_api.h"
-
-static void PrintDeviceType(
-    const char* label,
-    ze_device_type_t type )
-{
-    const char* s;
-    switch (type) {
-        case ZE_DEVICE_TYPE_GPU: s = "GPU"; break;
-        case ZE_DEVICE_TYPE_CPU: s = "CPU"; break;
-        case ZE_DEVICE_TYPE_FPGA: s = "FPGA"; break;
-        case ZE_DEVICE_TYPE_MCA: s = "MCA"; break;
-        default: s = "*UNKNOWN!"; break;
-    }
-    printf("%s%s\n", label, s);
-}
+#include "zello_log.h"
 
 int main(
     int argc,
@@ -58,7 +44,7 @@ int main(
 
         if (printUsage || !op.unknown_options().empty() || !op.non_option_args().empty()) {
             fprintf(stderr,
-                "Usage: enumlevelzero [options]\n"
+                "Usage: lzinfo [options]\n"
                 "%s", op.help().c_str());
             return -1;
         }
@@ -99,12 +85,56 @@ int main(
             ze_device_properties_t deviceProps = {};
             deviceProps.stype = ZE_STRUCTURE_TYPE_DEVICE_PROPERTIES;
             zeDeviceGetProperties(devices[i], &deviceProps);
-            
-            PrintDeviceType("\ttype:           ", deviceProps.type);
 
-            printf("\tname:           %s\n", deviceProps.name);
-            printf("\tvendorId:       %04X\n", deviceProps.vendorId);
-            printf("\tdeviceId:       %04X\n", deviceProps.deviceId);
+            ze_device_compute_properties_t computeProps = {};
+            computeProps.stype = ZE_STRUCTURE_TYPE_DEVICE_COMPUTE_PROPERTIES;
+            zeDeviceGetComputeProperties(devices[i], &computeProps);
+
+            ze_device_module_properties_t moduleProps = {};
+            moduleProps.stype = ZE_STRUCTURE_TYPE_DEVICE_MODULE_PROPERTIES;
+            zeDeviceGetModuleProperties(devices[i], &moduleProps);
+
+            //zeDeviceGetCommandQueueGroupProperties(
+
+            //zeDeviceGetMemoryProperties
+
+            ze_device_memory_access_properties_t memAccessProps = {};
+            memAccessProps.stype = ZE_STRUCTURE_TYPE_DEVICE_MEMORY_ACCESS_PROPERTIES;
+            zeDeviceGetMemoryAccessProperties(devices[i], &memAccessProps);
+
+            //zeDeviceGetCacheProperties
+
+            ze_device_image_properties_t imageProps = {};
+            imageProps.stype = ZE_STRUCTURE_TYPE_IMAGE_PROPERTIES;
+            zeDeviceGetImageProperties(devices[i], &imageProps);
+
+            ze_device_external_memory_properties_t externalMemProps = {};
+            externalMemProps.stype = ZE_STRUCTURE_TYPE_DEVICE_EXTERNAL_MEMORY_PROPERTIES;
+            zeDeviceGetExternalMemoryProperties(devices[i], &externalMemProps);
+
+            //zeDeviceGetP2PProperties
+
+            printf("Device Properties:\n%s\n", to_string(deviceProps).c_str());
+            printf("Compute Properties:\n%s\n", to_string(computeProps).c_str());
+            printf("Module Properties:\n%s\n", to_string(moduleProps).c_str());
+            printf("Memory Access Properties:\n%s\n", to_string(memAccessProps).c_str());
+            printf("Image Properties:\n%s\n", to_string(imageProps).c_str());
+            //printf("External Memory Properties:\n%s\n", to_string(externalMemProps).c_str());
+
+            uint32_t queueGroupCount = 0;
+            zeDeviceGetCommandQueueGroupProperties(devices[i], &queueGroupCount, nullptr);
+
+            std::vector<ze_command_queue_group_properties_t> queueGroupProps(queueGroupCount);
+            for (auto& prop : queueGroupProps) {
+                prop.stype = ZE_STRUCTURE_TYPE_COMMAND_QUEUE_GROUP_PROPERTIES;
+            }
+            zeDeviceGetCommandQueueGroupProperties(devices[i], &queueGroupCount, queueGroupProps.data());
+
+            for (uint32_t i = 0; i < queueGroupCount; i++) {
+                printf("QueueGroup[%u]:\n", i);
+                printf("Queue Group Properties:\n%s\n", to_string(queueGroupProps[i]).c_str());
+            }
+
         }
         printf("\n");
     }
