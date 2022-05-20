@@ -149,7 +149,7 @@ std::string to_string(const ze_device_fp_flags_t capabilities) {
 std::string to_string( const ze_device_uuid_t val )
 {
     std::string str;
-    
+
     str += "device_uuid_t::id : ";
     {
         std::string tmp;
@@ -173,11 +173,11 @@ std::string to_string(const ze_device_cache_property_flag_t val )
 
     if( 0 == bits )
         str += "0 | ";
-    
+
     if( static_cast<uint32_t>(ZE_DEVICE_CACHE_PROPERTY_FLAG_USER_CONTROL) & bits )
         str += "CACHE_PROPERTY_FLAG_USER_CONTROL | ";
 
-    return ( str.size() > 3 ) 
+    return ( str.size() > 3 )
         ? "Device::{ " + str.substr(0, str.size() - 3) + " }"
         : "Device::{ ? }";
 }
@@ -185,11 +185,11 @@ std::string to_string(const ze_device_cache_property_flag_t val )
 std::string to_string( ze_device_cache_properties_t val )
 {
     std::string str;
-    
+
     str += "ze_device_cache_properties_t.stype : ";
     str += to_string(val.stype);
     str += "\n";
-    
+
     str += "ze_device_cache_properties_t.pNext : ";
     {
         std::stringstream ss;
@@ -197,11 +197,11 @@ std::string to_string( ze_device_cache_properties_t val )
         str += ss.str();
     }
     str += "\n";
-    
+
     str += "ze_device_cache_properties_t.flags : ";
     str += to_string((ze_device_cache_property_flag_t)val.flags);
     str += "\n";
-    
+
     str += "ze_device_cache_properties_t.cacheSize : ";
     str += std::to_string(val.cacheSize);
     str += "\n";
@@ -214,11 +214,11 @@ std::string to_string( ze_device_cache_properties_t val )
 std::string to_string( ze_device_image_properties_t val )
 {
     std::string str;
-    
+
     str += "ze_device_image_properties_t.stype : ";
     str += to_string(val.stype);
     str += "\n";
-    
+
     str += "ze_device_image_properties_t.pNext : ";
     {
         std::stringstream ss;
@@ -226,35 +226,35 @@ std::string to_string( ze_device_image_properties_t val )
         str += ss.str();
     }
     str += "\n";
-    
+
     str += "ze_device_image_properties_t.maxImageDims1D : ";
     str += std::to_string(val.maxImageDims1D);
     str += "\n";
-    
+
     str += "ze_device_image_properties_t.maxImageDims2D : ";
     str += std::to_string(val.maxImageDims2D);
     str += "\n";
-    
+
     str += "ze_device_image_properties_t.maxImageDims3D : ";
     str += std::to_string(val.maxImageDims3D);
     str += "\n";
-    
+
     str += "ze_device_image_properties_t.maxImageBufferSize : ";
     str += std::to_string(val.maxImageBufferSize);
     str += "\n";
-    
+
     str += "ze_device_image_properties_t.maxImageArraySlices : ";
     str += std::to_string(val.maxImageArraySlices);
     str += "\n";
-    
+
     str += "ze_device_image_properties_t.maxSamplers : ";
     str += std::to_string(val.maxSamplers);
     str += "\n";
-    
+
     str += "ze_device_image_properties_t.maxReadImageArgs : ";
     str += std::to_string(val.maxReadImageArgs);
     str += "\n";
-    
+
     str += "ze_device_image_properties_t.maxWriteImageArgs : ";
     str += std::to_string(val.maxWriteImageArgs);
     str += "\n";
@@ -269,20 +269,20 @@ std::string to_string( ze_memory_access_cap_flag_t val )
 
     if( 0 == bits )
         str += "0 | ";
-    
+
     if( static_cast<uint32_t>(ZE_MEMORY_ACCESS_CAP_FLAG_RW) & bits )
         str += "MEMORY_ACCESS_CAP_FLAG_RW | ";
-    
+
     if( static_cast<uint32_t>(ZE_MEMORY_ACCESS_CAP_FLAG_ATOMIC) & bits )
         str += "MEMORY_ACCESS_CAP_FLAG_ATOMIC | ";
-    
+
     if( static_cast<uint32_t>(ZE_MEMORY_ACCESS_CAP_FLAG_CONCURRENT) & bits )
         str += "MEMORY_ACCESS_CAP_FLAG_CONCURRENT | ";
-    
+
     if( static_cast<uint32_t>(ZE_MEMORY_ACCESS_CAP_FLAG_CONCURRENT_ATOMIC) & bits )
         str += "MEMORY_ACCESS_CAP_FLAG_CONCURRENT_ATOMIC | ";
 
-    return ( str.size() > 3 ) 
+    return ( str.size() > 3 )
         ? "Device::{ " + str.substr(0, str.size() - 3) + " }"
         : "Device::{ ? }";
 }
@@ -292,11 +292,11 @@ std::string to_string( ze_memory_access_cap_flag_t val )
 std::string to_string( ze_device_memory_access_properties_t val )
 {
     std::string str;
-    
+
     str += "ze_device_memory_access_properties_t.stype : ";
     str += to_string(val.stype);
     str += "\n";
-    
+
     str += "ze_device_memory_access_properties_t.pNext : ";
     {
         std::stringstream ss;
@@ -304,23 +304,23 @@ std::string to_string( ze_device_memory_access_properties_t val )
         str += ss.str();
     }
     str += "\n";
-    
+
     str += "ze_device_memory_access_properties_t.hostAllocCapabilities : ";
     str += to_string((ze_memory_access_cap_flag_t)val.hostAllocCapabilities);
     str += "\n";
-    
+
     str += "ze_device_memory_access_properties_t.deviceAllocCapabilities : ";
     str += to_string((ze_memory_access_cap_flag_t)val.deviceAllocCapabilities);
     str += "\n";
-    
+
     str += "ze_device_memory_access_properties_t.sharedSingleDeviceAllocCapabilities : ";
     str += to_string((ze_memory_access_cap_flag_t)val.sharedSingleDeviceAllocCapabilities);
     str += "\n";
-    
+
     str += "ze_device_memory_access_properties_t.sharedCrossDeviceAllocCapabilities : ";
     str += to_string((ze_memory_access_cap_flag_t)val.sharedCrossDeviceAllocCapabilities);
     str += "\n";
-    
+
     str += "ze_device_memory_access_properties_t.sharedSystemAllocCapabilities : ";
     str += to_string((ze_memory_access_cap_flag_t)val.sharedSystemAllocCapabilities);
     str += "\n";
@@ -336,11 +336,11 @@ std::string to_string( ze_device_memory_property_flag_t val )
 
     if( 0 == bits )
         str += "0 | ";
-    
+
     if( static_cast<uint32_t>(ZE_DEVICE_MEMORY_PROPERTY_FLAG_TBD) & bits )
         str += "MEMORY_PROPERTY_FLAG_TBD | ";
 
-    return ( str.size() > 3 ) 
+    return ( str.size() > 3 )
         ? "Device::{ " + str.substr(0, str.size() - 3) + " }"
         : "Device::{ ? }";
 }
@@ -348,11 +348,11 @@ std::string to_string( ze_device_memory_property_flag_t val )
 std::string to_string( const ze_device_memory_properties_t val )
 {
     std::string str;
-    
+
     str += "stype : ";
     str += to_string(val.stype);
     str += "\n";
-    
+
     str += "pNext : ";
     {
         std::stringstream ss;
@@ -360,23 +360,23 @@ std::string to_string( const ze_device_memory_properties_t val )
         str += ss.str();
     }
     str += "\n";
-    
+
     str += "flags : ";
     str += to_string((ze_device_memory_property_flag_t)val.flags);
     str += "\n";
-    
+
     str += "maxClockRate : ";
     str += std::to_string(val.maxClockRate);
     str += "\n";
-    
+
     str += "maxBusWidth : ";
     str += std::to_string(val.maxBusWidth);
     str += "\n";
-    
+
     str += "totalSize : ";
     str += std::to_string(val.totalSize);
     str += "\n";
-    
+
     str += "name : ";
     str += val.name;
     str += "\n";
@@ -387,11 +387,11 @@ std::string to_string( const ze_device_memory_properties_t val )
 std::string to_string( const ze_device_compute_properties_t val )
 {
     std::string str;
-    
+
     str += "stype : ";
     str += to_string(val.stype);
     str += "\n";
-    
+
     str += "pNext : ";
     {
         std::stringstream ss;
@@ -399,43 +399,43 @@ std::string to_string( const ze_device_compute_properties_t val )
         str += ss.str();
     }
     str += "\n";
-    
+
     str += "maxTotalGroupSize : ";
     str += std::to_string(val.maxTotalGroupSize);
     str += "\n";
-    
+
     str += "maxGroupSizeX : ";
     str += std::to_string(val.maxGroupSizeX);
     str += "\n";
-    
+
     str += "maxGroupSizeY : ";
     str += std::to_string(val.maxGroupSizeY);
     str += "\n";
-    
+
     str += "maxGroupSizeZ : ";
     str += std::to_string(val.maxGroupSizeZ);
     str += "\n";
-    
+
     str += "maxGroupCountX : ";
     str += std::to_string(val.maxGroupCountX);
     str += "\n";
-    
+
     str += "maxGroupCountY : ";
     str += std::to_string(val.maxGroupCountY);
     str += "\n";
-    
+
     str += "maxGroupCountZ : ";
     str += std::to_string(val.maxGroupCountZ);
     str += "\n";
-    
+
     str += "maxSharedLocalMemory : ";
     str += std::to_string(val.maxSharedLocalMemory);
     str += "\n";
-    
+
     str += "numSubGroupSizes : ";
     str += std::to_string(val.numSubGroupSizes);
     str += "\n";
-    
+
     str += "subGroupSizes : ";
     {
         std::string tmp;
@@ -454,11 +454,11 @@ std::string to_string( const ze_device_compute_properties_t val )
 std::string to_string( const ze_device_module_properties_t val )
 {
     std::string str;
-    
+
     str += "stype : ";
     str += to_string(val.stype);
     str += "\n";
-    
+
     str += "pNext : ";
     {
         std::stringstream ss;
@@ -542,20 +542,20 @@ std::string to_string( ze_device_property_flag_t val )
 
     if( 0 == bits )
         str += "0 | ";
-    
+
     if( static_cast<uint32_t>(ZE_DEVICE_PROPERTY_FLAG_INTEGRATED) & bits )
         str += "PROPERTY_FLAG_INTEGRATED | ";
-    
+
     if( static_cast<uint32_t>(ZE_DEVICE_PROPERTY_FLAG_SUBDEVICE) & bits )
         str += "PROPERTY_FLAG_SUBDEVICE | ";
-    
+
     if( static_cast<uint32_t>(ZE_DEVICE_PROPERTY_FLAG_ECC) & bits )
         str += "PROPERTY_FLAG_ECC | ";
-    
+
     if( static_cast<uint32_t>(ZE_DEVICE_PROPERTY_FLAG_ONDEMANDPAGING) & bits )
         str += "PROPERTY_FLAG_ONDEMANDPAGING | ";
 
-    return ( str.size() > 3 ) 
+    return ( str.size() > 3 )
         ? "Device::{ " + str.substr(0, str.size() - 3) + " }"
         : "Device::{ ? }";
 }
@@ -564,11 +564,11 @@ std::string to_string( ze_device_property_flag_t val )
 std::string to_string(const ze_device_properties_t val)
 {
     std::string str;
-    
+
     str += "Device::properties_t::stype : ";
     str += to_string(val.stype);
     str += "\n";
-    
+
     str += "Device::properties_t::pNext : ";
     {
         std::stringstream ss;
@@ -576,79 +576,79 @@ std::string to_string(const ze_device_properties_t val)
         str += ss.str();
     }
     str += "\n";
-    
+
     str += "Device::properties_t::type : ";
     str += to_string(val.type);
     str += "\n";
-    
+
     str += "Device::properties_t::vendorId : ";
     str += std::to_string(val.vendorId);
     str += "\n";
-    
+
     str += "Device::properties_t::deviceId : ";
     str += std::to_string(val.deviceId);
     str += "\n";
-    
+
     str += "Device::properties_t::flags : ";
     str += to_string((ze_device_property_flag_t)val.flags);
     str += "\n";
-    
+
     str += "Device::properties_t::subdeviceId : ";
     str += std::to_string(val.subdeviceId);
     str += "\n";
-    
+
     str += "Device::properties_t::coreClockRate : ";
     str += std::to_string(val.coreClockRate);
     str += "\n";
-    
+
     str += "Device::properties_t::maxMemAllocSize : ";
     str += std::to_string(val.maxMemAllocSize);
     str += "\n";
-    
+
     str += "Device::properties_t::maxHardwareContexts : ";
     str += std::to_string(val.maxHardwareContexts);
     str += "\n";
-    
+
     str += "Device::properties_t::maxCommandQueuePriority : ";
     str += std::to_string(val.maxCommandQueuePriority);
     str += "\n";
-    
+
     str += "Device::properties_t::numThreadsPerEU : ";
     str += std::to_string(val.numThreadsPerEU);
     str += "\n";
-    
+
     str += "Device::properties_t::physicalEUSimdWidth : ";
     str += std::to_string(val.physicalEUSimdWidth);
     str += "\n";
-    
+
     str += "Device::properties_t::numEUsPerSubslice : ";
     str += std::to_string(val.numEUsPerSubslice);
     str += "\n";
-    
+
     str += "Device::properties_t::numSubslicesPerSlice : ";
     str += std::to_string(val.numSubslicesPerSlice);
     str += "\n";
-    
+
     str += "Device::properties_t::numSlices : ";
     str += std::to_string(val.numSlices);
     str += "\n";
-    
+
     str += "Device::properties_t::timerResolution : ";
     str += std::to_string(val.timerResolution);
     str += "\n";
-    
+
     str += "Device::properties_t::timestampValidBits : ";
     str += std::to_string(val.timestampValidBits);
     str += "\n";
-    
+
     str += "Device::properties_t::kernelTimestampValidBits : ";
     str += std::to_string(val.kernelTimestampValidBits);
     str += "\n";
-    
+
     str += "Device::properties_t::uuid : ";
     str += to_string(val.uuid);
     str += "\n";
-    
+
     str += "Device::properties_t::name : ";
     str += val.name;
     str += "\n";
@@ -1076,11 +1076,11 @@ std::string command_queue_group_property_flags_to_string(
 std::string to_string(const ze_command_queue_group_properties_t props)
 {
     std::string str;
-    
+
     str += "ze_command_queue_group_properties_t.stype : ";
     str += to_string(props.stype);
     str += "\n";
-    
+
     str += "ze_command_queue_group_properties_t.pNext : ";
     {
         std::stringstream ss;
@@ -1096,7 +1096,7 @@ std::string to_string(const ze_command_queue_group_properties_t props)
     str += "ze_command_queue_group_properties_t.maxMemoryFillPatternSize : ";
     str += std::to_string(props.maxMemoryFillPatternSize);
     str += "\n";
-    
+
     str += "ze_command_queue_group_properties_t.numQueues : ";
     str += std::to_string(props.numQueues);
     str += "\n";
