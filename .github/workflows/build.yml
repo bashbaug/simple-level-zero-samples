@@ -1,0 +1,57 @@
+name: build
+
+on:
+  push:
+    paths-ignore:
+      - '**/*.md'
+  pull_request:
+    branches:
+      - main
+
+env:
+  BUILD_TYPE: RelWithDebInfo
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Check Tabs
+      run: |
+        if git grep -n $'\t'          samples/*.cpp samples/*.h tutorials/*.cpp tutorials/*.h; then echo 'Please replace tabs with spaces in source files.';     false; fi
+
+    - name: Check Whitespace
+      run: |
+        if git grep -n '[[:blank:]]$' samples/*.cpp samples/*.h tutorials/*.cpp tutorials/*.h; then echo 'Please remove trailing whitespace from source files.'; false; fi
+
+  build:
+    needs: check
+
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    runs-on: ${{matrix.os}}
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Get Level Zero Loader
+      uses: actions/checkout@master
+      with:
+        repository: oneapi-src/level-zero
+        path: external/level-zero
+
+    - name: Create Build Directory
+      run: cmake -E make_directory ${{runner.workspace}}/build
+
+    - name: Run CMake
+      shell: bash
+      working-directory: ${{runner.workspace}}/build
+      run: cmake -DCMAKE_BUILD_TYPE=$BUILD_TYPE $GITHUB_WORKSPACE
+
+    - name: Build
+      working-directory: ${{runner.workspace}}/build
+      shell: bash
+      run: cmake --build . --parallel --config $BUILD_TYPE

@@ -1,6 +1,6 @@
 # Simple Level Zero Samples
 
-#[![build](https://github.com/bashbaug/SimpleOpenCLSamples/workflows/build/badge.svg?branch=master)](https://github.com/bashbaug/SimpleOpenCLSamples/actions?query=workflow%3Abuild+branch%3Amaster)
+#[![build](https://github.com/bashbaug/simple-level-zero-samples/workflows/build/badge.svg?branch=main)](https://github.com/bashbaug/simple-level-zero-samples/actions?query=workflow%3Abuild+branch%3Amain)
 
 This repo contains simple Level Zero samples that demonstrate how to build
 Level Zero applications using only the open-source headers and libs.
