@@ -94,7 +94,7 @@ int main(
             ze_device_properties_t deviceProps = {};
             deviceProps.stype = ZE_STRUCTURE_TYPE_DEVICE_PROPERTIES;
             CHECK_CALL( zeDeviceGetProperties(devices[i], &deviceProps) );
-            
+
             printf("\tname:           %s\n", deviceProps.name);
             printf("\tvendorId:       %04X\n", deviceProps.vendorId);
             printf("\tdeviceId:       %04X\n", deviceProps.deviceId);

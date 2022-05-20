@@ -99,7 +99,7 @@ int main(
             ze_device_properties_t deviceProps = {};
             deviceProps.stype = ZE_STRUCTURE_TYPE_DEVICE_PROPERTIES;
             zeDeviceGetProperties(devices[i], &deviceProps);
-            
+
             PrintDeviceType("\ttype:           ", deviceProps.type);
 
             printf("\tname:           %s\n", deviceProps.name);
