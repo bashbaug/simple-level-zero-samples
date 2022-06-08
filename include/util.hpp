@@ -7,6 +7,7 @@
 #pragma once
 
 #include "ze_api.h"
+#include <fstream>
 
 #if defined(_WIN32)
 #define SETENV( _name, _value ) _putenv_s( _name, _value )
