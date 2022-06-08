@@ -19,14 +19,6 @@ const char* spv_filename = "julia.spv";
 const float cr = -0.123f;
 const float ci =  0.745f;
 
-#define CHECK_CALL( _call )                                                 \
-    do {                                                                    \
-        ze_result_t result = _call;                                         \
-        if (result != ZE_RESULT_SUCCESS) {                                  \
-            printf("%s returned %u!\n", #_call, result);                    \
-        }                                                                   \
-    } while (0)
-
 int main(
     int argc,
     char** argv )
@@ -136,10 +128,12 @@ int main(
     kernelDesc.pKernelName = "Julia";
     CHECK_CALL( zeKernelCreate(module, &kernelDesc, &kernel) );
 
-    uint8_t* pDst = nullptr;
+    uint32_t* pDst = nullptr;
     ze_host_mem_alloc_desc_t hostAllocDesc = {};
     hostAllocDesc.stype = ZE_STRUCTURE_TYPE_HOST_MEM_ALLOC_DESC;
     CHECK_CALL( zeMemAllocHost(context, &hostAllocDesc, gwx * gwy * sizeof(uint32_t), 0, (void**)&pDst) );
+
+    memset(pDst, 0, gwx * gwy * sizeof(uint32_t));
 
     // execution
     {
@@ -171,6 +165,7 @@ int main(
         for( uint32_t i = 0; i < iterations; i++ )
         {
             CHECK_CALL( zeCommandListAppendLaunchKernel(queue, kernel, &groupCount, nullptr, 0, nullptr) );
+            CHECK_CALL( zeCommandListAppendBarrier(queue, nullptr, 0, nullptr) );
         }
 
         // Ensure all processing is complete before stopping the timer.
