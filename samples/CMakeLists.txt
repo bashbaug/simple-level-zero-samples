@@ -57,6 +57,8 @@ function(add_level_zero_sample)
     endif()
 endfunction()
 
+add_subdirectory( vulkan )
+
 add_subdirectory( 00_enumlevelzero )
 add_subdirectory( 01_lzinfo )
 add_subdirectory( 02_hellosysman )
