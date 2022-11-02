@@ -17,4 +17,5 @@ endif()
 
 if(BUILD_VULKAN_SAMPLES)
     add_subdirectory( 00_juliavk )
+    add_subdirectory( 01_nbodyvk )
 endif()
