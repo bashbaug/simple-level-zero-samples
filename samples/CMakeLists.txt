@@ -1,4 +1,4 @@
-# Copyright (c) 2022 Ben Ashbaugh
+# Copyright (c) 2022-2023 Ben Ashbaugh
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -60,3 +60,5 @@ endfunction()
 add_subdirectory( 00_enumlevelzero )
 add_subdirectory( 01_lzinfo )
 add_subdirectory( 02_hellosysman )
+
+add_subdirectory( 99_handlequery )
