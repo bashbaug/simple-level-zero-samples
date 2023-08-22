@@ -68,7 +68,7 @@ int main(
 
     result = zeInit(0);
     if (result != ZE_RESULT_SUCCESS) {
-        printf("zeInit failed (%u)!\n", result);
+        printf("zeInit failed (%08X)!\n", result);
     }
 
     uint32_t driverCount = 0;
@@ -109,7 +109,7 @@ int main(
             uint32_t subDeviceCount = 0;
             result = zeDeviceGetSubDevices(devices[i], &subDeviceCount, nullptr);
             if (result != ZE_RESULT_SUCCESS) {
-                printf("zeDeviceGetSubDevices failed (%u)!\n", result);
+                printf("zeDeviceGetSubDevices failed (%08X)!\n", result);
             } else {
                 printf("\tnumSubDevices:  %u\n", subDeviceCount);
             }
