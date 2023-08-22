@@ -105,6 +105,14 @@ int main(
             printf("\tname:           %s\n", deviceProps.name);
             printf("\tvendorId:       %04X\n", deviceProps.vendorId);
             printf("\tdeviceId:       %04X\n", deviceProps.deviceId);
+
+            uint32_t subDeviceCount = 0;
+            result = zeDeviceGetSubDevices(devices[i], &subDeviceCount, nullptr);
+            if (result != ZE_RESULT_SUCCESS) {
+                printf("zeDeviceGetSubDevices failed (%u)!\n", result);
+            } else {
+                printf("\tnumSubDevices:  %u\n", subDeviceCount);
+            }
         }
         printf("\n");
     }
