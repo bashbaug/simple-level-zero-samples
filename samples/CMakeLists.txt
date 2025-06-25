@@ -58,5 +58,6 @@ function(add_level_zero_sample)
 endfunction()
 
 add_subdirectory( 00_enumlevelzero )
+add_subdirectory( 01_enumextensions )
 add_subdirectory( 01_lzinfo )
 add_subdirectory( 02_hellosysman )
