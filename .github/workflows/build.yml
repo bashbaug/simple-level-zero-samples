@@ -54,4 +54,9 @@ jobs:
     - name: Build
       working-directory: ${{runner.workspace}}/build
       shell: bash
-      run: cmake --build . --parallel --config $BUILD_TYPE
+      run: |
+        if [[ "${{ matrix.os }}" == "ubuntu-latest" ]]; then
+          cmake --build .            --config $BUILD_TYPE
+        else
+          cmake --build . --parallel --config $BUILD_TYPE
+        fi
