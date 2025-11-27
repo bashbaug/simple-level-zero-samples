@@ -1,8 +1,14 @@
+/*
+// Copyright (c) 2025 Ben Ashbaugh
+//
+// SPDX-License-Identifier: MIT
+*/
+
+#include "ze_api.h"
+
 #include <iostream>
 #include <vector>
 #include <cstring>
-
-#include "zes_api.h"
 
 #define CHECK(res, msg) \
     if(res != ZE_RESULT_SUCCESS) { \
