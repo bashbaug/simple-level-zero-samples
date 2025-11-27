@@ -17,7 +17,7 @@ const size_t    gwx = 1024*1024;
     do {                                                                    \
         ze_result_t result = _call;                                         \
         if (result != ZE_RESULT_SUCCESS) {                                  \
-            printf("%s returned %u!\n", #_call, result);                    \
+            printf("%s returned %08X!\n", #_call, result);                  \
         }                                                                   \
     } while (0)
 
@@ -85,7 +85,7 @@ int main(
     queueDesc.ordinal = 0;
     queueDesc.index = 0;
     CHECK_CALL( zeCommandListCreateImmediate(context, hDevice, &queueDesc, &queue) );
-    
+
     uint32_t* pDst = nullptr;
     ze_device_mem_alloc_desc_t deviceAllocDesc = {};
     deviceAllocDesc.stype = ZE_STRUCTURE_TYPE_DEVICE_MEM_ALLOC_DESC;
