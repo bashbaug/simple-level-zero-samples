@@ -63,3 +63,5 @@ add_subdirectory( 01_copybuffer )
 add_subdirectory( 02_hellosysman )
 add_subdirectory( 03_memcpy )
 add_subdirectory( 05_spirvkernelfromfile )
+
+add_subdirectory( 99_profbench )
